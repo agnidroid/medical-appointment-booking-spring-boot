@@ -1,0 +1,29 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      httpclient:
+        wiretap: true # Enable logging of the HTTP requests
+      httpserver:
+        wiretap: true # Enable logging of the HTTP responses
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # URL of the Eureka server
+logging:
+  level:
+    root: info # Logging level of the application
+    org.springframework.cloud.gateway: trace # Logging level of the application
+    reactor.netty: info # Logging level of the application
+    in.stackroute.gateway_service: warn # Logging level of the application
+  pattern:
+    console: "%d{dd/MM/yyy HH:mm:ss} %-5level - %msg%n" # Pattern of the console logs
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n" # Pattern of the file logs
+  file:
+    name: logs\gateway-service.log # Name of the log file
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB # Maximum size of the log file
